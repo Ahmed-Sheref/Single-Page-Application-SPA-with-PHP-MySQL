@@ -1,0 +1,345 @@
+openapi: 3.0.3
+info:
+  title: Book Finder API
+  version: 1.0.0
+  description: API documentation for the Book Finder SPA backend.
+
+servers:
+  - url: http://localhost/book_finder
+    description: Local development server
+
+tags:
+  - name: Books
+    description: Local database operations
+  - name: External Search
+    description: Search books from Open Library API
+
+paths:
+  /DB_Ops.php:
+    get:
+      tags:
+        - Books
+      summary: Get saved books
+      description: Returns all saved books, or filters them by page range if min_pages and max_pages are provided.
+      parameters:
+        - in: query
+          name: min_pages
+          schema:
+            type: integer
+          required: false
+          description: Minimum page count
+        - in: query
+          name: max_pages
+          schema:
+            type: integer
+          required: false
+          description: Maximum page count
+      responses:
+        '200':
+          description: Books fetched successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBooksResponse'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    post:
+      tags:
+        - Books
+      summary: Create a saved book
+      description: Saves a new book in the local database.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBookRequest'
+      responses:
+        '200':
+          description: Book created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBookResponse'
+        '400':
+          description: Validation or duplicate error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    put:
+      tags:
+        - Books
+      summary: Update a saved book
+      description: Updates status and user_note of a saved book.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBookRequest'
+      responses:
+        '200':
+          description: Book updated successfully
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    delete:
+      tags:
+        - Books
+      summary: Delete a saved book
+      description: Deletes a saved book by id.
+      parameters:
+        - in: query
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Book ID
+      responses:
+        '200':
+          description: Delete result
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /API_Ops.php:
+    get:
+      tags:
+        - External Search
+      summary: Search books from Open Library
+      description: Searches books using the Open Library API through the backend.
+      parameters:
+        - in: query
+          name: q
+          schema:
+            type: string
+          required: true
+          description: Search query
+      responses:
+        '200':
+          description: Books fetched successfully from external API
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchBooksResponse'
+        '400':
+          description: Validation or API error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    Book:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        openlibrary_id:
+          type: string
+          example: /works/OL45804W
+        title:
+          type: string
+          example: Clean Code
+        author_name:
+          type: string
+          example: Robert C. Martin
+        publish_year:
+          type: integer
+          nullable: true
+          example: 2008
+        page_count:
+          type: integer
+          nullable: true
+          example: 464
+        cover_id:
+          type: string
+          nullable: true
+          example: "12345"
+        cover_url:
+          type: string
+          nullable: true
+          example: https://covers.openlibrary.org/b/id/12345-M.jpg
+        status:
+          type: string
+          enum: [not_read, reading, read]
+          example: not_read
+        user_note:
+          type: string
+          example: Important book
+        created_at:
+          type: string
+          example: "2026-04-22 15:00:00"
+        updated_at:
+          type: string
+          example: "2026-04-22 15:00:00"
+
+    ExternalBook:
+      type: object
+      properties:
+        openlibrary_id:
+          type: string
+          example: /works/OL45804W
+        title:
+          type: string
+          example: Clean Code
+        author_name:
+          type: string
+          example: Robert C. Martin
+        publish_year:
+          type: integer
+          nullable: true
+          example: 2008
+        page_count:
+          type: integer
+          nullable: true
+          example: 464
+        cover_id:
+          type: string
+          nullable: true
+          example: "12345"
+        cover_url:
+          type: string
+          nullable: true
+          example: https://covers.openlibrary.org/b/id/12345-M.jpg
+
+    GetBooksResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: Books fetched successfully
+        books:
+          type: array
+          items:
+            $ref: '#/components/schemas/Book'
+
+    SearchBooksResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: Books fetched successfully
+        books:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalBook'
+
+    CreateBookRequest:
+      type: object
+      required:
+        - openlibrary_id
+        - title
+      properties:
+        openlibrary_id:
+          type: string
+          example: /works/OL45804W
+        title:
+          type: string
+          example: Clean Code
+        author_name:
+          type: string
+          example: Robert C. Martin
+        publish_year:
+          type: integer
+          nullable: true
+          example: 2008
+        page_count:
+          type: integer
+          nullable: true
+          example: 464
+        cover_id:
+          type: string
+          nullable: true
+          example: "12345"
+        status:
+          type: string
+          enum: [not_read, reading, read]
+          example: not_read
+        user_note:
+          type: string
+          example: Important book
+
+    CreateBookResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: Book created successfully
+        book_id:
+          type: integer
+          example: 1
+
+    UpdateBookRequest:
+      type: object
+      required:
+        - id
+        - status
+      properties:
+        id:
+          type: integer
+          example: 1
+        status:
+          type: string
+          enum: [not_read, reading, read]
+          example: reading
+        user_note:
+          type: string
+          example: Started reading today
+
+    SuccessResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: Operation completed successfully
+
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Something went wrong
