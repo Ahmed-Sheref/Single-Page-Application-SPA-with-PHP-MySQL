@@ -1,19 +1,14 @@
 <?php
-$host = "127.0.0.1";
-$user = "root";
-$password = "";
-$database = "book_finder";
 
-$conn = new mysqli($host, $user, $password, $database);
+$conn = mysqli_connect(
+    "TEST",
+    "if0_41738730",
+    "Bk2JoL2loW",
+    "if0_41738730_bookfinder"
+);
 
-if ($conn->connect_error) 
-{
-    echo json_encode([
-        "status" => "error",
-        "message" => "Database connection failed"
-    ]);
-    exit;
+if (!$conn) {
+    die("Database Connection Failed: " . mysqli_connect_error());
 }
 
-$conn->set_charset("utf8mb4");
 ?>

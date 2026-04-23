@@ -7,8 +7,8 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method === 'GET') 
 {
-    $minPages = isset($_GET['min_pages']) ? (int) $_GET['min_pages'] : null;
-    $maxPages = isset($_GET['max_pages']) ? (int) $_GET['max_pages'] : null;
+    $minPages = isset($_GET['min_pages']) && $_GET['min_pages'] !== '' ? (int) $_GET['min_pages'] : null;
+    $maxPages = isset($_GET['max_pages']) && $_GET['max_pages'] !== '' ? (int) $_GET['max_pages'] : null;
 
     if (($minPages !== null && $minPages < 0) || ($maxPages !== null && $maxPages < 0)) 
     {
@@ -19,19 +19,36 @@ if ($method === 'GET')
         exit;
     }
 
-    if ($minPages !== null && $maxPages !== null && $minPages > $maxPages) 
+    if ($minPages === null && $maxPages !== null) 
     {
-        echo json_encode([
-            "status" => "error",
-            "message" => "min_pages cannot be greater than max_pages"
-        ]);
-        exit;
+        $minPages = 0;
     }
 
-    $books = [];
-
-    if ($minPages !== null && $maxPages !== null) 
+    if ($minPages !== null && $maxPages === null) 
     {
+        $stmt = $conn->prepare("
+            SELECT * 
+            FROM saved_books
+            WHERE page_count >= ?
+            ORDER BY created_at DESC
+        ");
+
+        $stmt->bind_param("i", $minPages);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    } 
+    // if both min and max exist
+    else if ($minPages !== null && $maxPages !== null) 
+    {
+        if ($minPages > $maxPages) 
+        {
+            echo json_encode([
+                "status" => "error",
+                "message" => "min_pages cannot be greater than max_pages"
+            ]);
+            exit;
+        }
+
         $stmt = $conn->prepare("
             SELECT * 
             FROM saved_books
@@ -41,38 +58,33 @@ if ($method === 'GET')
 
         $stmt->bind_param("ii", $minPages, $maxPages);
         $stmt->execute();
-
         $result = $stmt->get_result();
-
-        while ($row = $result->fetch_assoc()) 
-        {
-            $row['cover_url'] = !empty($row['cover_id'])
-                ? "https://covers.openlibrary.org/b/id/" . $row['cover_id'] . "-M.jpg"
-                : null;
-
-            $books[] = $row;
-        }
-
-        $stmt->close();
     } 
     else 
     {
         $sql = "SELECT * FROM saved_books ORDER BY created_at DESC";
         $result = $conn->query($sql);
+    }
 
-        while ($row = $result->fetch_assoc()) 
-        {
-            $row['cover_url'] = !empty($row['cover_id'])
-                ? "https://covers.openlibrary.org/b/id/" . $row['cover_id'] . "-M.jpg"
-                : null;
+    $books = [];
 
-            $books[] = $row;
-        }
+    while ($row = $result->fetch_assoc()) 
+    {
+        $row['cover_url'] = !empty($row['cover_id'])
+            ? "https://covers.openlibrary.org/b/id/" . $row['cover_id'] . "-M.jpg"
+            : null;
+
+        $books[] = $row;
+    }
+
+    if (isset($stmt)) 
+    {
+        $stmt->close();
     }
 
     echo json_encode([
         "status" => "success",
-        "message" => "Books fetched successfully",
+        "message" => count($books) ? "Books fetched successfully" : "No books found",
         "books" => $books
     ]);
     exit;
