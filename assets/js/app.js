@@ -307,9 +307,9 @@ function renderSearchResults(books) {
                 await loadSavedBooks(minPagesInput.value.trim(), maxPagesInput.value.trim());
             } catch (error) {
                 button.disabled = false;
-                button.innerHTML = originalText;
-                showMessage(apiMessage, error.message || 'Failed to save this book.', 'error');
                 button.innerHTML = 'Book Already Saved';
+                // button.innerHTML = originalText;
+                showMessage(apiMessage, error.message || 'Failed to save this book.', 'error');
             }
         });
     });
