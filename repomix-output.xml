@@ -1,0 +1,2601 @@
+This file is a merged representation of a subset of the codebase, containing files not matching ignore patterns, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of a subset of the repository's contents that is considered the most important context.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching these patterns are excluded: /locales/, /assets/, /pnpm-lock.yaml, /.svg, **/.png
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+API_Ops.php
+assets/css/style.css
+assets/js/API_Ops.js
+assets/js/app.js
+assets/js/DB_Ops.js
+config/db_config.php
+DB_Ops.php
+footer.php
+header.php
+index.php
+README.md
+saved_books.sql
+swagger/index.html
+swagger/openapi.yaml
+Team_Members.txt
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="assets/css/style.css">
+:root {
+    --bg: #faf8f5;
+    --surface: #ffffff;
+    --surface-soft: #f5f2ed;
+    --text: #1a1612;
+    --muted: #6b6259;
+    --border: #e0d9d0;
+    --primary: #c45c2a;
+    --primary-dark: #a34820;
+    --primary-light: #fdf0ea;
+    --success-bg: #e8f5ee;
+    --success-text: #166534;
+    --error-bg: #fef2f2;
+    --error-text: #b91c1c;
+    --warning-bg: #fffbeb;
+    --warning-text: #92400e;
+    --shadow: 0 4px 24px rgba(26, 22, 18, 0.07);
+    --shadow-lg: 0 12px 40px rgba(26, 22, 18, 0.10);
+    --radius: 16px;
+    --radius-sm: 10px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+.container {
+    width: min(1160px, calc(100% - 2rem));
+    margin: 0 auto;
+}
+
+/* Header */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(250, 248, 245, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+}
+
+.header-content,
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.brand-wrap {
+    display: flex;
+    align-items: center;
+}
+
+.brand {
+    text-decoration: none;
+    color: var(--text);
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    letter-spacing: -0.01em;
+}
+
+.brand-icon {
+    font-size: 1.3rem;
+}
+
+.site-nav {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.site-nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 8px;
+    transition: background 0.15s, color 0.15s;
+}
+
+.site-nav a:hover {
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+/* Layout */
+.app-shell {
+    padding: 2.5rem 0 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Hero */
+.hero {
+    background: linear-gradient(135deg, #fff8f4 0%, #fdf4ee 50%, #f9f5f0 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '📚';
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 6rem;
+    opacity: 0.12;
+    pointer-events: none;
+}
+
+.hero-tag {
+    display: inline-block;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.85rem;
+    border: 1px solid rgba(196, 92, 42, 0.2);
+}
+
+.hero h1 {
+    margin: 0 0 0.75rem;
+    font-family: 'Lora', Georgia, serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text);
+}
+
+.hero h1 em {
+    font-style: italic;
+    color: var(--primary);
+}
+
+.hero p {
+    margin: 0;
+    color: var(--muted);
+    max-width: 600px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+/* Panel */
+.panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 1.75rem;
+}
+
+.panel-header {
+    margin-bottom: 1.25rem;
+}
+
+.panel-header h2 {
+    margin: 0 0 0.35rem;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+}
+
+.panel-header p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+/* Forms */
+label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-width: 180px;
+}
+
+.field-group.grow {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.search-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 160px;
+    gap: 0.85rem;
+    align-items: start;
+}
+
+.filter-form,
+.book-actions,
+.saved-book-form {
+    display: flex;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.search-row input {
+    height: 56px;
+}
+
+.search-row .btn,
+.search-button {
+    width: 100%;
+    height: 56px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: start;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-size: 0.95rem;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(196, 92, 42, 0.12);
+}
+
+input.input-invalid,
+textarea.input-invalid,
+select.input-invalid {
+    border-color: var(--error-text);
+    box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.1);
+}
+
+textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* Buttons */
+.btn {
+    border: 0;
+    border-radius: var(--radius-sm);
+    padding: 0.8rem 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s, opacity 0.15s, background 0.2s, box-shadow 0.15s;
+    font-size: 0.93rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+}
+
+.btn-saved {
+    background: #166534;
+    color: #fff;
+    cursor: default;
+}
+
+.btn-secondary {
+    background: var(--text);
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background: #2d2520;
+}
+
+.btn-light {
+    background: var(--surface-soft);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.btn-light:hover {
+    background: var(--border);
+}
+
+.btn-danger {
+    background: #fef2f2;
+    color: var(--error-text);
+    border: 1px solid #fecaca;
+}
+
+.btn-danger:hover {
+    background: var(--error-text);
+    color: #fff;
+    border-color: var(--error-text);
+}
+
+.btn-icon {
+    font-size: 1em;
+}
+
+.actions-row {
+    display: flex;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+}
+
+/* Alerts */
+.alert {
+    margin-top: 1rem;
+    padding: 0.9rem 1.1rem;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    font-size: 0.93rem;
+}
+
+.alert.success {
+    background: var(--success-bg);
+    color: var(--success-text);
+    border: 1px solid #bbf7d0;
+}
+
+.alert.error {
+    background: var(--error-bg);
+    color: var(--error-text);
+    border: 1px solid #fecaca;
+}
+
+.alert.warning {
+    background: var(--warning-bg);
+    color: var(--warning-text);
+    border: 1px solid #fed7aa;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Book Grid */
+.books-grid {
+    margin-top: 1.25rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.1rem;
+    align-items: start;
+}
+
+.empty-state {
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--muted);
+    border: 1.5px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 2rem 1.5rem;
+    background: var(--surface-soft);
+    gap: 0.5rem;
+}
+
+.empty-icon {
+    font-size: 2rem;
+    display: block;
+    opacity: 0.5;
+}
+
+.empty-state p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Book Card */
+.book-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 1rem;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+    align-self: start;
+}
+
+.book-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.book-card--saved {
+    border-left: 3px solid var(--primary);
+}
+
+.book-cover {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 10px;
+    background: var(--surface-soft);
+}
+
+.book-cover--placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface-soft);
+    color: var(--muted);
+    font-size: 3rem;
+}
+
+.book-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.book-title {
+    margin: 0;
+    font-family: 'Lora', Georgia, serif;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text);
+}
+
+.book-author {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+.book-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.2rem;
+}
+
+.book-meta-item {
+    font-size: 0.82rem;
+    color: var(--muted);
+    background: var(--surface-soft);
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+}
+
+.meta-label {
+    font-weight: 600;
+    color: var(--text);
+    margin-right: 0.2rem;
+}
+
+/* Status Badge */
+.book-status-badge {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    width: fit-content;
+}
+
+.status-not_read {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+}
+
+.status-reading {
+    background: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+}
+
+.status-read {
+    background: var(--success-bg);
+    color: var(--success-text);
+    border: 1px solid #bbf7d0;
+}
+
+.book-actions {
+    margin-top: auto;
+}
+
+.btn-save {
+    width: 100%;
+    justify-content: center;
+}
+
+.field-error {
+    min-height: 1rem;
+    color: var(--error-text);
+    font-size: 0.82rem;
+}
+
+/* Footer */
+.site-footer {
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+}
+
+.footer-content {
+    padding: 1.25rem 0;
+}
+
+.footer-brand {
+    font-family: 'Lora', Georgia, serif;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+}
+
+.site-footer p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.site-footer a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header-content,
+    .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .site-nav {
+        width: 100%;
+    }
+
+    .search-row {
+        grid-template-columns: 1fr;
+    }
+
+    .search-row .btn,
+    .search-button {
+        width: 100%;
+        height: auto;
+        justify-content: center;
+    }
+
+    .filter-form,
+    .book-actions,
+    .saved-book-form,
+    .actions-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .books-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .hero::before {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .books-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .panel {
+        padding: 1.25rem;
+    }
+}
+.site-nav .nav-link {
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 8px;
+    transition: background 0.15s, color 0.15s;
+}
+
+.site-nav .nav-link:hover,
+.site-nav .nav-link.active {
+    color: var(--primary);
+    background: var(--primary-light);
+}
+.page-view {
+    display: none;
+}
+
+.page-view.active {
+    display: block;
+}
+</file>
+
+<file path="assets/js/API_Ops.js">
+async function searchBooksRequest(query) {
+    const response = await fetch(`API_Ops.php?q=${encodeURIComponent(query)}`, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json'
+        }
+    });
+
+    let data;
+    try {
+        data = await response.json();
+    } catch (error) {
+        throw new Error('Invalid JSON response from API endpoint.');
+    }
+
+    if (!response.ok || data.status !== 'success') {
+        throw new Error(data.message || 'Failed to search books.');
+    }
+
+    return data;
+}
+</file>
+
+<file path="assets/js/app.js">
+const searchForm = document.getElementById('searchForm');
+const searchInput = document.getElementById('searchInput');
+const searchButton = document.getElementById('searchButton');
+const searchInputError = document.getElementById('searchInputError');
+const searchResults = document.getElementById('searchResults');
+const apiMessage = document.getElementById('apiMessage');
+
+const filterForm = document.getElementById('filterForm');
+const minPagesInput = document.getElementById('minPages');
+const maxPagesInput = document.getElementById('maxPages');
+const resetFilterBtn = document.getElementById('resetFilterBtn');
+const filterMessage = document.getElementById('filterMessage');
+
+const savedBooks = document.getElementById('savedBooks');
+const dbMessage = document.getElementById('dbMessage');
+
+const discoverView = document.getElementById('discoverView');
+const libraryView = document.getElementById('libraryView');
+const navLinks = document.querySelectorAll('[data-view-target]');
+
+const MIN_SEARCH_LENGTH = 3;
+const MAX_NOTE_LENGTH = 500;
+const ALLOWED_STATUSES = ['not_read', 'reading', 'read'];
+
+document.addEventListener('DOMContentLoaded', function () {
+    bindEvents();
+    updateSearchValidationState();
+
+    const initialView = getViewFromUrl();
+    switchView(initialView, false);
+
+    if (initialView === 'library') {
+        loadSavedBooks();
+    }
+});
+
+window.addEventListener('popstate', function () {
+    const currentView = getViewFromUrl();
+    switchView(currentView, false);
+
+    if (currentView === 'library') {
+        loadSavedBooks(minPagesInput.value.trim(), maxPagesInput.value.trim());
+    }
+});
+
+function bindEvents() {
+    navLinks.forEach(function (link) {
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            const targetView = link.dataset.viewTarget;
+            switchView(targetView, true);
+
+            if (targetView === 'library') {
+                loadSavedBooks(minPagesInput.value.trim(), maxPagesInput.value.trim());
+            }
+        });
+    });
+
+    if (searchInput) {
+        searchInput.addEventListener('input', function () {
+            updateSearchValidationState();
+        });
+
+        searchInput.addEventListener('keyup', function () {
+            updateSearchValidationState();
+        });
+    }
+
+    if (searchForm) {
+        searchForm.addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const validation = validateSearchInput();
+
+            if (!validation.valid) {
+                updateSearchValidationState();
+                searchInput.focus();
+                return;
+            }
+
+            hideMessage(apiMessage);
+
+            const originalText = searchButton.innerHTML;
+            searchButton.disabled = true;
+            searchButton.innerHTML = '<span class="btn-icon">⏳</span> Searching...';
+
+            try {
+                const data = await searchBooksRequest(validation.cleanedValue);
+                renderSearchResults(data.books || []);
+
+                if (!data.books || data.books.length === 0) {
+                    showMessage(apiMessage, 'No books found for your search.', 'warning');
+                } else {
+                    showMessage(apiMessage, data.message || 'Books loaded successfully.', 'success');
+                }
+            } catch (error) {
+                renderEmptyState(searchResults, '🔎', 'Could not load search results.');
+                showMessage(apiMessage, error.message || 'Something went wrong while searching.', 'error');
+            } finally {
+                searchButton.innerHTML = originalText;
+                updateSearchValidationState();
+            }
+        });
+    }
+
+    if (filterForm) {
+        filterForm.addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const validation = validateFilterInputs();
+
+            if (!validation.valid) {
+                showMessage(filterMessage, validation.message, 'error');
+                return;
+            }
+
+            hideMessage(filterMessage);
+            await loadSavedBooks(validation.minPages, validation.maxPages);
+
+            if (validation.minPages !== '' || validation.maxPages !== '') {
+                showMessage(filterMessage, 'Filter applied successfully.', 'success');
+            }
+        });
+    }
+
+    if (resetFilterBtn) {
+        resetFilterBtn.addEventListener('click', async function () {
+            minPagesInput.value = '';
+            maxPagesInput.value = '';
+            hideMessage(filterMessage);
+            await loadSavedBooks();
+        });
+    }
+}
+
+function getViewFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const view = params.get('view');
+
+    if (view === 'library') {
+        return 'library';
+    }
+
+    return 'discover';
+}
+
+function switchView(viewName, pushState = true) {
+    if (viewName === 'library') {
+        discoverView.classList.remove('active');
+        discoverView.classList.add('hidden');
+
+        libraryView.classList.remove('hidden');
+        libraryView.classList.add('active');
+    } else {
+        libraryView.classList.remove('active');
+        libraryView.classList.add('hidden');
+
+        discoverView.classList.remove('hidden');
+        discoverView.classList.add('active');
+    }
+
+    navLinks.forEach(function (link) {
+        if (link.dataset.viewTarget === viewName) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+
+    if (pushState) {
+        const url = viewName === 'library' ? '?view=library' : '?view=discover';
+        window.history.pushState({}, '', url);
+    }
+}
+
+function updateSearchValidationState() {
+    if (!searchInput || !searchButton || !searchInputError) {
+        return;
+    }
+
+    const cleanedValue = searchInput.value.replace(/\s+/g, ' ').trim();
+    const length = cleanedValue.length;
+
+    if (length === 0) {
+        searchInput.classList.remove('input-invalid');
+        searchInputError.textContent = '';
+        searchButton.disabled = true;
+        return;
+    }
+
+    if (length < MIN_SEARCH_LENGTH) {
+        searchInput.classList.add('input-invalid');
+        searchInputError.textContent = 'The minimum number of charcters is 3';
+        searchButton.disabled = true;
+        return;
+    }
+
+    searchInput.classList.remove('input-invalid');
+    searchInputError.textContent = '';
+    searchButton.disabled = false;
+}
+
+function validateSearchInput() {
+    const cleanedValue = searchInput.value.replace(/\s+/g, ' ').trim();
+
+    if (cleanedValue.length < MIN_SEARCH_LENGTH) {
+        return {
+            valid: false,
+            cleanedValue: cleanedValue
+        };
+    }
+
+    return {
+        valid: true,
+        cleanedValue: cleanedValue
+    };
+}
+
+function validateFilterInputs() {
+    const minPages = minPagesInput.value.trim();
+    const maxPages = maxPagesInput.value.trim();
+
+    if (minPages !== '' && Number(minPages) < 0) {
+        return {
+            valid: false,
+            message: 'Min pages cannot be negative.'
+        };
+    }
+
+    if (maxPages !== '' && Number(maxPages) < 0) {
+        return {
+            valid: false,
+            message: 'Max pages cannot be negative.'
+        };
+    }
+
+    if (minPages !== '' && maxPages !== '' && Number(minPages) > Number(maxPages)) {
+        return {
+            valid: false,
+            message: 'Min pages cannot be greater than max pages.'
+        };
+    }
+
+    return {
+        valid: true,
+        minPages: minPages,
+        maxPages: maxPages
+    };
+}
+
+async function loadSavedBooks(minPages = '', maxPages = '') {
+    hideMessage(dbMessage);
+
+    try {
+        const data = await fetchSavedBooksRequest(minPages, maxPages);
+        renderSavedBooks(data.books || []);
+    } catch (error) {
+        renderEmptyState(savedBooks, '📚', 'Could not load saved books.');
+        showMessage(dbMessage, error.message || 'Failed to load saved books.', 'error');
+    }
+}
+
+function renderSearchResults(books) {
+    if (!Array.isArray(books) || books.length === 0) {
+        renderEmptyState(searchResults, '🔎', 'Your search results will appear here.');
+        return;
+    }
+
+    searchResults.classList.remove('empty-state');
+    searchResults.innerHTML = books.map(function (book) {
+        return buildSearchBookCard(book);
+    }).join('');
+
+    const saveButtons = searchResults.querySelectorAll('[data-save-book]');
+
+    saveButtons.forEach(function (button) {
+        button.addEventListener('click', async function () {
+            const payload = {
+                openlibrary_id: button.dataset.openlibraryId || '',
+                title: button.dataset.title || '',
+                author_name: button.dataset.authorName || '',
+                publish_year: button.dataset.publishYear || '',
+                page_count: button.dataset.pageCount || '',
+                cover_id: button.dataset.coverId || '',
+                status: 'not_read',
+                user_note: ''
+            };
+
+            const validation = validateBookPayload(payload);
+
+            if (!validation.valid) {
+                showMessage(dbMessage, validation.message, 'error');
+                return;
+            }
+
+            const originalText = button.innerHTML;
+            button.disabled = true;
+            button.innerHTML = 'Saving...';
+
+            try {
+                await saveBookRequest(validation.cleanedPayload);
+                showMessage(dbMessage, 'Book saved successfully.', 'success');
+                button.classList.remove('btn-primary');
+                button.classList.add('btn-saved');
+                button.innerHTML = '✓ Saved';
+                await loadSavedBooks(minPagesInput.value.trim(), maxPagesInput.value.trim());
+            } catch (error) {
+                button.disabled = false;
+                button.innerHTML = originalText;
+                showMessage(dbMessage, error.message || 'Failed to save this book.', 'error');
+            }
+        });
+    });
+}
+
+function renderSavedBooks(books) {
+    if (!Array.isArray(books) || books.length === 0) {
+        renderEmptyState(savedBooks, '📚', 'Your saved books will appear here. Start by searching above!');
+        return;
+    }
+
+    savedBooks.classList.remove('empty-state');
+    savedBooks.innerHTML = books.map(function (book) {
+        return buildSavedBookCard(book);
+    }).join('');
+
+    const savedForms = savedBooks.querySelectorAll('.saved-book-form');
+
+    savedForms.forEach(function (form) {
+        form.addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const id = Number(form.dataset.id);
+            const status = form.querySelector('[name="status"]').value;
+            const userNote = form.querySelector('[name="user_note"]').value.trim();
+
+            if (!ALLOWED_STATUSES.includes(status)) {
+                showMessage(dbMessage, 'Please choose a valid reading status.', 'error');
+                return;
+            }
+
+            if (userNote.length > MAX_NOTE_LENGTH) {
+                showMessage(dbMessage, 'Note must be 500 characters or less.', 'error');
+                return;
+            }
+
+            const updateButton = form.querySelector('[data-update-book]');
+            const originalText = updateButton.textContent;
+            updateButton.disabled = true;
+            updateButton.textContent = 'Updating...';
+
+            try {
+                await updateBookRequest({
+                    id: id,
+                    status: status,
+                    user_note: userNote
+                });
+
+                showMessage(dbMessage, 'Book updated successfully.', 'success');
+                await loadSavedBooks(minPagesInput.value.trim(), maxPagesInput.value.trim());
+            } catch (error) {
+                showMessage(dbMessage, error.message || 'Failed to update this book.', 'error');
+            } finally {
+                updateButton.disabled = false;
+                updateButton.textContent = originalText;
+            }
+        });
+    });
+
+    const deleteButtons = savedBooks.querySelectorAll('[data-delete-book]');
+
+    deleteButtons.forEach(function (button) {
+        button.addEventListener('click', async function () {
+            const id = button.dataset.deleteBook;
+            const title = button.dataset.title || 'this book';
+
+            const confirmed = window.confirm('Are you sure you want to delete "' + title + '"?');
+
+            if (!confirmed) {
+                return;
+            }
+
+            const originalText = button.textContent;
+            button.disabled = true;
+            button.textContent = 'Deleting...';
+
+            try {
+                await deleteBookRequest(id);
+                showMessage(dbMessage, 'Book deleted successfully.', 'success');
+                await loadSavedBooks(minPagesInput.value.trim(), maxPagesInput.value.trim());
+            } catch (error) {
+                showMessage(dbMessage, error.message || 'Failed to delete this book.', 'error');
+            } finally {
+                button.disabled = false;
+                button.textContent = originalText;
+            }
+        });
+    });
+}
+
+function validateBookPayload(payload) {
+    const cleanedPayload = {
+        openlibrary_id: String(payload.openlibrary_id || '').trim(),
+        title: String(payload.title || '').trim(),
+        author_name: String(payload.author_name || 'Unknown author').trim(),
+        publish_year: normalizeOptionalNumber(payload.publish_year),
+        page_count: normalizeOptionalNumber(payload.page_count),
+        cover_id: String(payload.cover_id || '').trim(),
+        status: 'not_read',
+        user_note: ''
+    };
+
+    if (!cleanedPayload.openlibrary_id) {
+        return {
+            valid: false,
+            message: 'This book cannot be saved because its ID is missing.'
+        };
+    }
+
+    if (!cleanedPayload.title) {
+        return {
+            valid: false,
+            message: 'This book cannot be saved because its title is missing.'
+        };
+    }
+
+    return {
+        valid: true,
+        cleanedPayload: cleanedPayload
+    };
+}
+
+function normalizeOptionalNumber(value) {
+    const cleaned = String(value ?? '').trim();
+
+    if (cleaned === '' || Number.isNaN(Number(cleaned))) {
+        return '';
+    }
+
+    return Number(cleaned);
+}
+
+function buildSearchBookCard(book) {
+    const title = escapeHtml(book.title || 'Unknown title');
+    const author = escapeHtml(book.author_name || 'Unknown author');
+    const publishYear = book.publish_year ? escapeHtml(String(book.publish_year)) : 'N/A';
+    const pageCount = book.page_count ? escapeHtml(String(book.page_count)) : 'N/A';
+
+    return `
+        <article class="book-card">
+            ${buildCover(book.cover_url, title)}
+            <div class="book-info">
+                <h3 class="book-title">${title}</h3>
+                <p class="book-author">${author}</p>
+
+                <div class="book-meta-row">
+                    <span class="book-meta-item">
+                        <span class="meta-label">Year:</span> ${publishYear}
+                    </span>
+                    <span class="book-meta-item">
+                        <span class="meta-label">Pages:</span> ${pageCount}
+                    </span>
+                </div>
+            </div>
+
+            <div class="book-actions">
+                <button
+                    type="button"
+                    class="btn btn-primary btn-save"
+                    data-save-book="1"
+                    data-openlibrary-id="${escapeAttribute(book.openlibrary_id || '')}"
+                    data-title="${escapeAttribute(book.title || '')}"
+                    data-author-name="${escapeAttribute(book.author_name || '')}"
+                    data-publish-year="${escapeAttribute(String(book.publish_year ?? ''))}"
+                    data-page-count="${escapeAttribute(String(book.page_count ?? ''))}"
+                    data-cover-id="${escapeAttribute(String(book.cover_id ?? ''))}"
+                >
+                    Save Book
+                </button>
+            </div>
+        </article>
+    `;
+}
+
+function buildSavedBookCard(book) {
+    const title = escapeHtml(book.title || 'Unknown title');
+    const author = escapeHtml(book.author_name || 'Unknown author');
+    const publishYear = book.publish_year ? escapeHtml(String(book.publish_year)) : 'N/A';
+    const pageCount = book.page_count ? escapeHtml(String(book.page_count)) : 'N/A';
+    const note = escapeHtml(book.user_note || '');
+    const status = ALLOWED_STATUSES.includes(book.status) ? book.status : 'not_read';
+
+    return `
+        <article class="book-card book-card--saved">
+            ${buildCover(book.cover_url, title)}
+            <div class="book-info">
+                <span class="book-status-badge ${getStatusClass(status)}">${formatStatus(status)}</span>
+                <h3 class="book-title">${title}</h3>
+                <p class="book-author">${author}</p>
+
+                <div class="book-meta-row">
+                    <span class="book-meta-item">
+                        <span class="meta-label">Year:</span> ${publishYear}
+                    </span>
+                    <span class="book-meta-item">
+                        <span class="meta-label">Pages:</span> ${pageCount}
+                    </span>
+                </div>
+            </div>
+
+            <form class="saved-book-form" data-id="${escapeAttribute(String(book.id))}">
+                <div class="field-group">
+                    <label>Status</label>
+                    <select name="status">
+                        ${buildStatusOptions(status)}
+                    </select>
+                </div>
+
+                <div class="field-group grow">
+                    <label>Note</label>
+                    <textarea name="user_note" placeholder="Add a personal note...">${note}</textarea>
+                </div>
+
+                <div class="actions-row">
+                    <button type="submit" class="btn btn-secondary" data-update-book>Update</button>
+                    <button
+                        type="button"
+                        class="btn btn-danger"
+                        data-delete-book="${escapeAttribute(String(book.id))}"
+                        data-title="${escapeAttribute(book.title || 'this book')}"
+                    >
+                        Delete
+                    </button>
+                </div>
+            </form>
+        </article>
+    `;
+}
+
+function buildStatusOptions(selectedStatus) {
+    return ALLOWED_STATUSES.map(function (status) {
+        const selected = status === selectedStatus ? 'selected' : '';
+        return `<option value="${status}" ${selected}>${formatStatus(status)}</option>`;
+    }).join('');
+}
+
+function formatStatus(status) {
+    if (status === 'not_read') return 'Not Read';
+    if (status === 'reading') return 'Reading';
+    if (status === 'read') return 'Read';
+    return status;
+}
+
+function getStatusClass(status) {
+    if (status === 'reading') return 'status-reading';
+    if (status === 'read') return 'status-read';
+    return 'status-not_read';
+}
+
+function buildCover(coverUrl, title) {
+    if (coverUrl) {
+        return `<img class="book-cover" src="${escapeAttribute(coverUrl)}" alt="${escapeAttribute(title)} cover">`;
+    }
+
+    return `<div class="book-cover book-cover--placeholder">📘</div>`;
+}
+
+function renderEmptyState(container, icon, message) {
+    container.classList.add('empty-state');
+    container.innerHTML = `
+        <span class="empty-icon">${escapeHtml(icon)}</span>
+        <p>${escapeHtml(message)}</p>
+    `;
+}
+
+function showMessage(element, message, type) {
+    element.textContent = message;
+    element.className = 'alert ' + type;
+    element.classList.remove('hidden');
+}
+
+function hideMessage(element) {
+    element.textContent = '';
+    element.className = 'alert hidden';
+}
+
+function escapeHtml(value) {
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
+function escapeAttribute(value) {
+    return escapeHtml(value);
+}
+</file>
+
+<file path="assets/js/DB_Ops.js">
+async function fetchSavedBooksRequest(minPages = '', maxPages = '') {
+    const params = new URLSearchParams();
+
+    if (minPages !== '') {
+        params.append('min_pages', minPages);
+    }
+
+    if (maxPages !== '') {
+        params.append('max_pages', maxPages);
+    }
+
+    const queryString = params.toString();
+    const url = queryString ? `DB_Ops.php?${queryString}` : 'DB_Ops.php';
+
+    const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json'
+        }
+    });
+
+    const data = await response.json();
+
+    if (!response.ok || data.status !== 'success') {
+        throw new Error(data.message || 'Failed to load saved books.');
+    }
+
+    return data;
+}
+
+async function saveBookRequest(book) {
+    const response = await fetch('DB_Ops.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(book)
+    });
+
+    const data = await response.json();
+
+    if (!response.ok || data.status !== 'success') {
+        throw new Error(data.message || 'Failed to save the book.');
+    }
+
+    return data;
+}
+
+async function updateBookRequest(payload) {
+    const response = await fetch('DB_Ops.php', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    });
+
+    const data = await response.json();
+
+    if (!response.ok || data.status !== 'success') {
+        throw new Error(data.message || 'Failed to update the book.');
+    }
+
+    return data;
+}
+
+async function deleteBookRequest(id) {
+    const response = await fetch(`DB_Ops.php?id=${encodeURIComponent(id)}`, {
+        method: 'DELETE',
+        headers: {
+            'Accept': 'application/json'
+        }
+    });
+
+    const data = await response.json();
+
+    if (!response.ok || data.status !== 'success') {
+        throw new Error(data.message || 'Failed to delete the book.');
+    }
+
+    return data;
+}
+</file>
+
+<file path="footer.php">
+<footer class="site-footer">
+        <div class="container footer-content">
+            <p class="footer-brand">📖 PageTurner</p>
+            <p>Powered by <a href="https://openlibrary.org" target="_blank" rel="noopener">Open Library</a> &mdash; millions of books at your fingertips.</p>
+        </div>
+    </footer>
+</body>
+</html>
+</file>
+
+<file path="header.php">
+<?php
+if (!isset($pageTitle)) {
+    $pageTitle = 'PageTurner';
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo htmlspecialchars($pageTitle); ?></title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Lora:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-content">
+            <div class="brand-wrap">
+                <span class="brand">
+                    <span class="brand-icon">📖</span>
+                    PageTurner
+                </span>
+            </div>
+
+            <nav class="site-nav" aria-label="Primary navigation">
+                <a href="?view=discover" class="nav-link active" data-view-target="discover">Discover</a>
+                <a href="?view=library" class="nav-link" data-view-target="library">My Library</a>
+            </nav>
+        </div>
+    </header>
+</file>
+
+<file path="index.php">
+<?php
+$pageTitle = 'PageTurner — Discover Your Next Read';
+include 'header.php';
+?>
+
+<main class="container app-shell">
+    <section class="hero">
+        <div class="hero-inner">
+            <span class="hero-tag">Your Personal Reading Companion</span>
+            <h1>Find books you'll <em>love</em></h1>
+            <p>
+                Search millions of titles, save the ones that catch your eye, track what you're reading,
+                and keep personal notes — all in one place, no page reloads.
+            </p>
+        </div>
+    </section>
+
+    <div id="discoverView" class="page-view active">
+        <section class="panel search-panel">
+            <div class="panel-header">
+                <h2>Discover Books</h2>
+                <p>Search by title, author, or any keyword.</p>
+            </div>
+
+            <form id="searchForm" class="search-form" novalidate>
+                <label for="searchInput">Title, author, or keyword</label>
+
+                <div class="search-row">
+                    <input
+                        type="text"
+                        id="searchInput"
+                        name="q"
+                        placeholder="e.g. Harry Potter, Stephen King, mystery…"
+                        minlength="3"
+                        required
+                    >
+
+                    <button
+                        type="submit"
+                        id="searchButton"
+                        class="btn btn-primary search-button"
+                        disabled
+                    >
+                        <span class="btn-icon">🔍</span> Search
+                    </button>
+                </div>
+
+                <small class="field-error" id="searchInputError"></small>
+            </form>
+
+            <div id="apiMessage" class="alert hidden" role="alert"></div>
+
+            <div id="searchResults" class="books-grid empty-state">
+                <span class="empty-icon">🔎</span>
+                <p>Your search results will appear here.</p>
+            </div>
+        </section>
+    </div>
+
+    <div id="libraryView" class="page-view hidden">
+        <section class="panel filters-panel">
+            <div class="panel-header">
+                <h2>Filter My Library</h2>
+                <p>Narrow down your saved books by page count.</p>
+            </div>
+
+            <form id="filterForm" class="filter-form" novalidate>
+                <div class="field-group">
+                    <label for="minPages">Min pages</label>
+                    <input type="number" id="minPages" min="0" placeholder="0">
+                </div>
+
+                <div class="field-group">
+                    <label for="maxPages">Max pages</label>
+                    <input type="number" id="maxPages" min="0" placeholder="1000">
+                </div>
+
+                <div class="actions-row">
+                    <button type="submit" class="btn btn-secondary">Apply Filter</button>
+                    <button type="button" id="resetFilterBtn" class="btn btn-light">Reset</button>
+                </div>
+            </form>
+
+            <div id="filterMessage" class="alert hidden" role="alert"></div>
+        </section>
+
+        <section class="panel saved-panel">
+            <div class="panel-header">
+                <h2>My Library</h2>
+                <p>Books you've saved — track your reading progress and add personal notes.</p>
+            </div>
+
+            <div id="dbMessage" class="alert hidden" role="alert"></div>
+
+            <div id="savedBooks" class="books-grid empty-state">
+                <span class="empty-icon">📚</span>
+                <p>Your saved books will appear here. Start by searching above!</p>
+            </div>
+        </section>
+    </div>
+</main>
+
+<script src="assets/js/API_Ops.js"></script>
+<script src="assets/js/DB_Ops.js"></script>
+<script src="assets/js/app.js"></script>
+
+<?php include 'footer.php'; ?>
+</file>
+
+<file path="README.md">
+# Single-Page-Application-SPA-with-PHP-MySQL
+</file>
+
+<file path="saved_books.sql">
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Apr 23, 2026 at 07:55 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `book_finder`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `saved_books`
+--
+
+CREATE TABLE `saved_books` (
+  `id` int(11) NOT NULL,
+  `openlibrary_id` varchar(100) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `author_name` varchar(255) DEFAULT NULL,
+  `publish_year` int(11) DEFAULT NULL,
+  `page_count` int(11) DEFAULT NULL,
+  `cover_id` varchar(50) DEFAULT NULL,
+  `status` enum('not_read','reading','read') DEFAULT 'not_read',
+  `user_note` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `saved_books`
+--
+
+INSERT INTO `saved_books` (`id`, `openlibrary_id`, `title`, `author_name`, `publish_year`, `page_count`, `cover_id`, `status`, `user_note`, `created_at`, `updated_at`) VALUES
+(17, '/works/OL1238284W', 'Exercitia spiritualia', 'Saint Ignatius of Loyola', 1548, 230, '8027976', 'not_read', '', '2026-04-23 17:36:34', '2026-04-23 17:36:34'),
+(18, '/works/OL804246W', 'Sonnenfinsternis', 'Arthur Koestler', 1940, 254, '368797', 'reading', '', '2026-04-23 17:36:34', '2026-04-23 17:36:45');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `saved_books`
+--
+ALTER TABLE `saved_books`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `openlibrary_id` (`openlibrary_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `saved_books`
+--
+ALTER TABLE `saved_books`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+</file>
+
+<file path="swagger/index.html">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Book Finder API Docs</title>
+  <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist/swagger-ui.css" />
+</head>
+<body>
+  <div id="swagger-ui"></div>
+
+  <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"></script>
+  <script>
+    window.onload = () => {
+      SwaggerUIBundle({
+        url: "./openapi.yaml",
+        dom_id: "#swagger-ui"
+      });
+    };
+  </script>
+</body>
+</html>
+</file>
+
+<file path="swagger/openapi.yaml">
+openapi: 3.0.3
+info:
+  title: Book Finder API
+  version: 1.0.0
+  description: API documentation for the Book Finder SPA backend.
+
+servers:
+  - url: http://localhost/book_finder
+    description: Local development server
+
+tags:
+  - name: Books
+    description: Local database operations
+  - name: External Search
+    description: Search books from Open Library API
+
+paths:
+  /DB_Ops.php:
+    get:
+      tags:
+        - Books
+      summary: Get saved books
+      description: Returns all saved books, or filters them by page range if min_pages and max_pages are provided.
+      parameters:
+        - in: query
+          name: min_pages
+          schema:
+            type: integer
+          required: false
+          description: Minimum page count
+        - in: query
+          name: max_pages
+          schema:
+            type: integer
+          required: false
+          description: Maximum page count
+      responses:
+        '200':
+          description: Books fetched successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBooksResponse'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    post:
+      tags:
+        - Books
+      summary: Create a saved book
+      description: Saves a new book in the local database.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBookRequest'
+      responses:
+        '200':
+          description: Book created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBookResponse'
+        '400':
+          description: Validation or duplicate error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    put:
+      tags:
+        - Books
+      summary: Update a saved book
+      description: Updates status and user_note of a saved book.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBookRequest'
+      responses:
+        '200':
+          description: Book updated successfully
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    delete:
+      tags:
+        - Books
+      summary: Delete a saved book
+      description: Deletes a saved book by id.
+      parameters:
+        - in: query
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: Book ID
+      responses:
+        '200':
+          description: Delete result
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/SuccessResponse'
+                  - $ref: '#/components/schemas/ErrorResponse'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /API_Ops.php:
+    get:
+      tags:
+        - External Search
+      summary: Search books from Open Library
+      description: Searches books using the Open Library API through the backend.
+      parameters:
+        - in: query
+          name: q
+          schema:
+            type: string
+          required: true
+          description: Search query
+      responses:
+        '200':
+          description: Books fetched successfully from external API
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchBooksResponse'
+        '400':
+          description: Validation or API error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    Book:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        openlibrary_id:
+          type: string
+          example: /works/OL45804W
+        title:
+          type: string
+          example: Clean Code
+        author_name:
+          type: string
+          example: Robert C. Martin
+        publish_year:
+          type: integer
+          nullable: true
+          example: 2008
+        page_count:
+          type: integer
+          nullable: true
+          example: 464
+        cover_id:
+          type: string
+          nullable: true
+          example: "12345"
+        cover_url:
+          type: string
+          nullable: true
+          example: https://covers.openlibrary.org/b/id/12345-M.jpg
+        status:
+          type: string
+          enum: [not_read, reading, read]
+          example: not_read
+        user_note:
+          type: string
+          example: Important book
+        created_at:
+          type: string
+          example: "2026-04-22 15:00:00"
+        updated_at:
+          type: string
+          example: "2026-04-22 15:00:00"
+
+    ExternalBook:
+      type: object
+      properties:
+        openlibrary_id:
+          type: string
+          example: /works/OL45804W
+        title:
+          type: string
+          example: Clean Code
+        author_name:
+          type: string
+          example: Robert C. Martin
+        publish_year:
+          type: integer
+          nullable: true
+          example: 2008
+        page_count:
+          type: integer
+          nullable: true
+          example: 464
+        cover_id:
+          type: string
+          nullable: true
+          example: "12345"
+        cover_url:
+          type: string
+          nullable: true
+          example: https://covers.openlibrary.org/b/id/12345-M.jpg
+
+    GetBooksResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: Books fetched successfully
+        books:
+          type: array
+          items:
+            $ref: '#/components/schemas/Book'
+
+    SearchBooksResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: Books fetched successfully
+        books:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalBook'
+
+    CreateBookRequest:
+      type: object
+      required:
+        - openlibrary_id
+        - title
+      properties:
+        openlibrary_id:
+          type: string
+          example: /works/OL45804W
+        title:
+          type: string
+          example: Clean Code
+        author_name:
+          type: string
+          example: Robert C. Martin
+        publish_year:
+          type: integer
+          nullable: true
+          example: 2008
+        page_count:
+          type: integer
+          nullable: true
+          example: 464
+        cover_id:
+          type: string
+          nullable: true
+          example: "12345"
+        status:
+          type: string
+          enum: [not_read, reading, read]
+          example: not_read
+        user_note:
+          type: string
+          example: Important book
+
+    CreateBookResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: Book created successfully
+        book_id:
+          type: integer
+          example: 1
+
+    UpdateBookRequest:
+      type: object
+      required:
+        - id
+        - status
+      properties:
+        id:
+          type: integer
+          example: 1
+        status:
+          type: string
+          enum: [not_read, reading, read]
+          example: reading
+        user_note:
+          type: string
+          example: Started reading today
+
+    SuccessResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: Operation completed successfully
+
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Something went wrong
+</file>
+
+<file path="API_Ops.php">
+<?php
+header("Content-Type: application/json; charset=UTF-8");
+
+if ($_SERVER['REQUEST_METHOD'] !== 'GET') 
+{
+    http_response_code(405);
+    echo json_encode([
+        "status" => "error",
+        "message" => "Method not allowed"
+    ]);
+    exit;
+}
+
+$query = trim($_GET['q'] ?? '');
+
+if ($query === '') 
+{
+    http_response_code(400);
+    echo json_encode([
+        "status" => "error",
+        "message" => "Search query is required"
+    ]);
+    exit;
+}
+
+$apiUrl = "https://openlibrary.org/search.json?q=" . urlencode($query)
+    . "&fields=key,title,author_name,first_publish_year,number_of_pages_median,cover_i"
+    . "&limit=10";
+
+$maxRetries = 3;
+$attempt = 0;
+$response = false;
+$curlErrorNo = 0;
+$curlError = '';
+$httpCode = 0;
+
+while ($attempt < $maxRetries) 
+{
+    $attempt++;
+
+    $ch = curl_init();
+
+    curl_setopt_array($ch, [
+        CURLOPT_URL => $apiUrl,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_CONNECTTIMEOUT => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_USERAGENT => 'MyBookApp/1.0',
+        CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_MAXREDIRS => 5,
+        CURLOPT_SSL_VERIFYPEER => true,
+        CURLOPT_SSL_VERIFYHOST => 2
+    ]);
+
+    $response = curl_exec($ch);
+    $curlErrorNo = curl_errno($ch);
+    $curlError = curl_error($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    curl_close($ch);
+
+    if ($curlErrorNo === 0 && $httpCode === 200 && $response !== false) 
+    {
+        break;
+    }
+
+    if ($attempt < $maxRetries) 
+    {
+        usleep(500000);
+    }
+}
+
+if ($curlErrorNo !== 0) 
+{
+    http_response_code(502);
+
+    $message = ($curlErrorNo === CURLE_OPERATION_TIMEDOUT)
+        ? "Book API request timed out"
+        : "Failed to connect to book API";
+
+    echo json_encode([
+        "status" => "error",
+        "message" => $message,
+        "curl_errno" => $curlErrorNo,
+        "curl_error" => $curlError
+    ]);
+    exit;
+}
+
+if ($httpCode !== 200) 
+{
+    http_response_code(502);
+    echo json_encode([
+        "status" => "error",
+        "message" => "Book API returned an error",
+        "http_code" => $httpCode
+    ]);
+    exit;
+}
+
+$data = json_decode($response, true);
+
+if (!is_array($data) || !isset($data['docs']) || !is_array($data['docs'])) 
+{
+    http_response_code(502);
+    echo json_encode([
+        "status" => "error",
+        "message" => "Invalid response from book API"
+    ]);
+    exit;
+}
+
+$books = [];
+
+foreach ($data['docs'] as $book) 
+{
+    $coverId = isset($book['cover_i']) && !empty($book['cover_i'])
+        ? (string) $book['cover_i']
+        : null;
+
+    $books[] = [
+        "openlibrary_id" => $book['key'] ?? null,
+        "title" => $book['title'] ?? "Unknown title",
+        "author_name" => isset($book['author_name']) && is_array($book['author_name']) && !empty($book['author_name'])
+            ? $book['author_name'][0]
+            : "Unknown author",
+        "publish_year" => $book['first_publish_year'] ?? null,
+        "page_count" => $book['number_of_pages_median'] ?? null,
+        "cover_id" => $coverId,
+        "cover_url" => $coverId
+            ? "https://covers.openlibrary.org/b/id/" . $coverId . "-M.jpg"
+            : null
+    ];
+}
+
+echo json_encode([
+    "status" => "success",
+    "message" => count($books) > 0 ? "Books fetched successfully" : "No books found",
+    "books" => $books
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+</file>
+
+<file path="DB_Ops.php">
+<?php
+require_once 'config/db_config.php';
+
+header("Content-Type: application/json");
+
+$method = $_SERVER['REQUEST_METHOD'];
+
+if ($method === 'GET') 
+{
+    $minPages = isset($_GET['min_pages']) && $_GET['min_pages'] !== '' ? (int) $_GET['min_pages'] : null;
+    $maxPages = isset($_GET['max_pages']) && $_GET['max_pages'] !== '' ? (int) $_GET['max_pages'] : null;
+
+    if (($minPages !== null && $minPages < 0) || ($maxPages !== null && $maxPages < 0)) 
+    {
+        echo json_encode([
+            "status" => "error",
+            "message" => "Page numbers must be positive"
+        ]);
+        exit;
+    }
+
+    if ($minPages === null && $maxPages !== null) 
+    {
+        $minPages = 0;
+    }
+
+    if ($minPages !== null && $maxPages === null) 
+    {
+        $stmt = $conn->prepare("
+            SELECT * 
+            FROM saved_books
+            WHERE page_count >= ?
+            ORDER BY created_at DESC
+        ");
+
+        $stmt->bind_param("i", $minPages);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    } 
+    // if both min and max exist
+    else if ($minPages !== null && $maxPages !== null) 
+    {
+        if ($minPages > $maxPages) 
+        {
+            echo json_encode([
+                "status" => "error",
+                "message" => "min_pages cannot be greater than max_pages"
+            ]);
+            exit;
+        }
+
+        $stmt = $conn->prepare("
+            SELECT * 
+            FROM saved_books
+            WHERE page_count BETWEEN ? AND ?
+            ORDER BY created_at DESC
+        ");
+
+        $stmt->bind_param("ii", $minPages, $maxPages);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    } 
+    else 
+    {
+        $sql = "SELECT * FROM saved_books ORDER BY created_at DESC";
+        $result = $conn->query($sql);
+    }
+
+    $books = [];
+
+    while ($row = $result->fetch_assoc()) 
+    {
+        $row['cover_url'] = !empty($row['cover_id'])
+            ? "https://covers.openlibrary.org/b/id/" . $row['cover_id'] . "-M.jpg"
+            : null;
+
+        $books[] = $row;
+    }
+
+    if (isset($stmt)) 
+    {
+        $stmt->close();
+    }
+
+    echo json_encode([
+        "status" => "success",
+        "message" => count($books) ? "Books fetched successfully" : "No books found",
+        "books" => $books
+    ]);
+    exit;
+}
+if ($method === 'POST') 
+{
+    $input = json_decode(file_get_contents("php://input"), true);
+
+    if (!$input) 
+    {
+        echo json_encode([
+            "status" => "error",
+            "message" => "Invalid or missing JSON body"
+        ]);
+        exit;
+    }
+
+    $openlibrary_id = trim($input['openlibrary_id'] ?? '');
+    $title = trim($input['title'] ?? '');
+    $author_name = trim($input['author_name'] ?? '');
+    $publish_year = isset($input['publish_year']) && $input['publish_year'] !== '' ? (int)$input['publish_year'] : null;
+    $page_count = isset($input['page_count']) && $input['page_count'] !== '' ? (int)$input['page_count'] : null;
+    $cover_id = trim($input['cover_id'] ?? '');
+    $status = trim($input['status'] ?? 'not_read');
+    $user_note = trim($input['user_note'] ?? '');
+
+    $allowedStatuses = ['not_read', 'reading', 'read'];
+
+    if ($openlibrary_id === '' || $title === '') 
+    {
+        echo json_encode([
+            "status" => "error",
+            "message" => "openlibrary_id and title are required"
+        ]);
+        exit;
+    }
+
+    if (!in_array($status, $allowedStatuses, true)) 
+    {
+        echo json_encode([
+            "status" => "error",
+            "message" => "Invalid status value"
+        ]);
+        exit;
+    }
+
+    if ($publish_year !== null && $publish_year < 0) 
+    {
+        echo json_encode([
+            "status" => "error",
+            "message" => "publish_year must be a positive number"
+        ]);
+        exit;
+    }
+
+    if ($page_count !== null && $page_count < 0) 
+    {
+        echo json_encode([
+            "status" => "error",
+            "message" => "page_count must be a positive number"
+        ]);
+        exit;
+    }
+
+    $stmt = $conn->prepare("
+        INSERT INTO saved_books
+        (openlibrary_id, title, author_name, publish_year, page_count, cover_id, status, user_note)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    ");
+
+    if (!$stmt) 
+    {
+        echo json_encode([
+            "status" => "error",
+            "message" => "Failed to prepare statement"
+        ]);
+        exit;
+    }
+
+    $stmt->bind_param(
+        "sssiisss",
+        $openlibrary_id,
+        $title,
+        $author_name,
+        $publish_year,
+        $page_count,
+        $cover_id,
+        $status,
+        $user_note
+    );
+
+    try 
+    {
+        $stmt->execute();
+
+        echo json_encode([
+            "status" => "success",
+            "message" => "Book created successfully",
+            "book_id" => $stmt->insert_id
+        ]);
+    } 
+    catch (mysqli_sql_exception $e) 
+    {
+        if ($e->getCode() == 1062) 
+        {
+            echo json_encode([
+                "status" => "error",
+                "message" => "This book is already saved"
+            ]);
+        } 
+        else 
+        {
+            echo json_encode([
+                "status" => "error",
+                "message" => "Failed to create book",
+                "mysql_error" => $e->getMessage()
+            ]);
+        }
+    }
+
+    $stmt->close();
+    exit;
+}
+if ($method === 'PUT') 
+{
+    $input = json_decode(file_get_contents("php://input"), true);
+
+    if (!$input) 
+    {
+        echo json_encode([
+            "status" => "error",
+            "message" => "Invalid or missing JSON body"
+        ]);
+        exit;
+    }
+
+    $id = isset($input['id']) ? (int)$input['id'] : 0;
+    $status = trim($input['status'] ?? '');
+    $user_note = trim($input['user_note'] ?? '');
+
+    $allowedStatuses = ['not_read', 'reading', 'read'];
+
+    if ($id <= 0) 
+    {
+        echo json_encode([
+            "status" => "error",
+            "message" => "Valid book id is required"
+        ]);
+        exit;
+    }
+
+    if ($status === '' || !in_array($status, $allowedStatuses, true)) 
+    {
+        echo json_encode([
+            "status" => "error",
+            "message" => "Invalid status value"
+        ]);
+        exit;
+    }
+
+    $stmt = $conn->prepare("
+        UPDATE saved_books
+        SET status = ?, user_note = ?
+        WHERE id = ?
+    ");
+
+    if (!$stmt) 
+    {
+        echo json_encode([
+            "status" => "error",
+            "message" => "Failed to prepare statement"
+        ]);
+        exit;
+    }
+
+    $stmt->bind_param("ssi", $status, $user_note, $id);
+
+    try 
+    {
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) 
+        {
+            echo json_encode([
+                "status" => "success",
+                "message" => "Book updated successfully"
+            ]);
+        } 
+    } 
+    catch (mysqli_sql_exception $e) 
+    {
+        echo json_encode([
+            "status" => "error",
+            "message" => "Failed to update book",
+            "mysql_error" => $e->getMessage()
+        ]);
+    }
+
+    $stmt->close();
+    exit;
+}
+if ($method === 'DELETE') 
+{
+    $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+
+    if ($id <= 0) 
+    {
+        echo json_encode([
+            "status" => "error",
+            "message" => "Valid book id is required"
+        ]);
+        exit;
+    }
+
+    $stmt = $conn->prepare("DELETE FROM saved_books WHERE id = ?");
+
+    if (!$stmt) 
+    {
+        echo json_encode([
+            "status" => "error",
+            "message" => "Failed to prepare statement"
+        ]);
+        exit;
+    }
+
+    $stmt->bind_param("i", $id);
+
+    try 
+    {
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) 
+        {
+            echo json_encode([
+                "status" => "success",
+                "message" => "Book deleted successfully"
+            ]);
+        } 
+        else 
+        {
+            echo json_encode([
+                "status" => "error",
+                "message" => "Book not found"
+            ]);
+        }
+    } 
+    catch (mysqli_sql_exception $e) 
+    {
+        echo json_encode([
+            "status" => "error",
+            "message" => "Failed to delete book",
+            "mysql_error" => $e->getMessage()
+        ]);
+    }
+
+    $stmt->close();
+    exit;
+}
+
+echo json_encode([
+    "status" => "error",
+    "message" => "Method not allowed"
+]);
+</file>
+
+<file path="Team_Members.txt">
+Team Number: 10
+
+Yasser Khaled Fath El Bab:  20231203
+Hassan Walid Hassan:        20230544
+Mohamed Sherif Abdelazim:   20231142
+Ahmed Sherif Sayed:         20230542
+Mohamed Sherif Mohamed:     20230340
+Mohamed Kamal Ahmed:        20230349
+Mohamed Abdallah Galal:     20231144
+Youssef Eid Darwish:        20230503
+</file>
+
+<file path="config/db_config.php">
+<?php
+
+$conn = mysqli_connect(
+    "TEST",
+    "if0_41738730",
+    "Bk2JoL2loW",
+    "if0_41738730_bookfinder"
+);
+
+if (!$conn) {
+    die("Database Connection Failed: " . mysqli_connect_error());
+}
+
+?>
+</file>
+
+</files>

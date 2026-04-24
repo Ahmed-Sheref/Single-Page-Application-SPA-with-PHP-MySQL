@@ -23,7 +23,7 @@ if ($query === '')
     exit;
 }
 
-$apiUrl = "https://openlibrary.org/search.json?q=" . urlencode($query)
+$apiUrl = "https://openlibrary.org/search.json?title=" . urlencode($query)
     . "&fields=key,title,author_name,first_publish_year,number_of_pages_median,cover_i"
     . "&limit=10";
 

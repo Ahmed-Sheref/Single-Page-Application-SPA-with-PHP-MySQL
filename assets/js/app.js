@@ -290,7 +290,7 @@ function renderSearchResults(books) {
             const validation = validateBookPayload(payload);
 
             if (!validation.valid) {
-                showMessage(dbMessage, validation.message, 'error');
+                showMessage(apiMessage, validation.message, 'error');
                 return;
             }
 
@@ -300,7 +300,7 @@ function renderSearchResults(books) {
 
             try {
                 await saveBookRequest(validation.cleanedPayload);
-                showMessage(dbMessage, 'Book saved successfully.', 'success');
+                showMessage(apiMessage, 'Book saved successfully.', 'success');
                 button.classList.remove('btn-primary');
                 button.classList.add('btn-saved');
                 button.innerHTML = '✓ Saved';
@@ -308,7 +308,8 @@ function renderSearchResults(books) {
             } catch (error) {
                 button.disabled = false;
                 button.innerHTML = originalText;
-                showMessage(dbMessage, error.message || 'Failed to save this book.', 'error');
+                showMessage(apiMessage, error.message || 'Failed to save this book.', 'error');
+                button.innerHTML = 'Book Already Saved';
             }
         });
     });
